@@ -42,4 +42,10 @@ view: order_items {
     type: count
     drill_fields: [id, inventory_items.id, orders.id]
   }
+
+  measure: total_order_revenue {
+    type: sum
+    value_format_name: usd
+    drill_fields: [id, inventory_items.id, orders.id]
+  }
 }
