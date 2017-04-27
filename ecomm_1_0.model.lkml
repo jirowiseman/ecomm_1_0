@@ -66,13 +66,6 @@ explore: user_data {
     sql_on: ${user_data.user_id} = ${users.id} ;;
     relationship: many_to_one
   }
-
-  join: orders {
-    type: left_outer
-    sql_on: ${users.id} = ${orders.user_id} ;;
-    relationship: one_to_many
-
-  }
 }
 
 explore: users {}
