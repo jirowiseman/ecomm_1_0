@@ -58,8 +58,6 @@ explore: orders {
 
 explore: products {}
 
-explore: schema_migrations {}
-
 explore: user_data {
   join: users {
     type: left_outer
