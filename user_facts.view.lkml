@@ -39,7 +39,7 @@ view: user_facts {
 
   dimension: months_as_customer {
     sql: SELECT
-        TIMESTAMPDIFF(MONTH,MIN(DATE(orders.created_at)),CURDATE()) as months_as_customer
+        TIMESTAMPDIFF(MONTH,MIN(DATE(orders.created_at)),CURDATE())
       FROM users
       LEFT JOIN orders ON users.id = orders.user_id
       GROUP BY users.id  ;;
