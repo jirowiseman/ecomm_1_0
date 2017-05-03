@@ -6,7 +6,8 @@ view: user_facts {
         COUNT(orders.id) as total_number_of_orders,
         MIN(DATE(orders.created_at)) as first_order_date,
         MAX(DATE(orders.created_at)) as latest_order_date,
-        DATEDIFF(CURDATE(),MAX(DATE(orders.created_at))) as days_since_last_order
+        DATEDIFF(CURDATE(),MAX(DATE(orders.created_at))) as days_since_last_order,
+        TIMESTAMPDIFF(MONTH,MIN(DATE(orders.created_at)),CURDATE()) as months_as_customer
       FROM users
       LEFT JOIN orders ON users.id = orders.user_id
       GROUP BY users.id;;
@@ -38,11 +39,7 @@ view: user_facts {
   }
 
   dimension: months_as_customer {
-    sql: SELECT
-        TIMESTAMPDIFF(MONTH,MIN(DATE(orders.created_at)),CURDATE())
-      FROM users
-      LEFT JOIN orders ON users.id = orders.user_id
-      GROUP BY users.id  ;;
+    sql: ${TABLE}.months_as_customer;;
   }
 
   measure: avg_orders_per_month {
