@@ -11,6 +11,8 @@ view: user_facts {
       FROM users
       LEFT JOIN orders ON users.id = orders.user_id
       GROUP BY users.id;;
+      persist_for: "24 hours"
+      indexes: ["user_id"]
   }
 
   dimension: user_id {
