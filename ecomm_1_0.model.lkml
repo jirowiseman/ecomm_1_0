@@ -59,6 +59,12 @@ explore: orders {
     sql_on: ${orders.user_id} = ${user_facts.user_id}  ;;
     relationship: many_to_one
   }
+
+  join: 5_or_more_orders_cohort_facts {
+    type: left_outer
+    sql_on: ${5_or_more_orders_cohort_facts.user_id} = ${user_facts.user_id} ;;
+    relationship: one_to_one
+  }
 }
 
 explore: products {}
