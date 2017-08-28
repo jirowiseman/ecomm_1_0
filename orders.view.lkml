@@ -42,7 +42,7 @@ view: orders {
     sql: ${TABLE}.status ;;
     link: {
       label: "Status Dash"
-      url: "embed/dashboards/6?Status={{value | url_encode}}"
+      url: "/dashboards/6?Status={{value | url_encode}}"
     }
   }
 
@@ -64,7 +64,7 @@ view: orders {
     drill_fields: [created_date, users.id, order_items.count]
     link: {
       label: "Status Dash Measure"
-      url: "embed/dashboards/6?Date={{orders.created_date._value | url_encode}}"
+      url: "/dashboards/6?Date={{orders.created_date._value | url_encode}}"
     }
   }
 }
