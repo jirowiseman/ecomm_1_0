@@ -4,12 +4,14 @@ view: user_facts {
       SELECT
         users.id as user_id,
         COUNT(orders.id) as total_number_of_orders,
+        SUM(order_items.sale_price) as lifetime_revenue,
         MIN(DATE(orders.created_at)) as first_order_date,
         MAX(DATE(orders.created_at)) as latest_order_date,
         DATEDIFF(CURDATE(),MAX(DATE(orders.created_at))) as days_since_last_order,
         TIMESTAMPDIFF(MONTH,MIN(DATE(orders.created_at)),CURDATE()) as months_as_customer
       FROM users
       LEFT JOIN orders ON users.id = orders.user_id
+      LEFT JOIN order_items ON order_items.order_id = orders.id
       GROUP BY users.id;;
       persist_for: "24 hours"
       indexes: ["user_id"]

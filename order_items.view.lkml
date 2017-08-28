@@ -50,4 +50,10 @@ view: order_items {
     value_format_name: usd
     drill_fields: [orders.id, inventory_items.id, sale_price]
   }
+
+  measure: avg_sale_price {
+    type: average
+    sql: ${sale_price} ;;
+    value_format_name: usd
+  }
 }

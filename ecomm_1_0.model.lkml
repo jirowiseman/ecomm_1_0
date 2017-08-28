@@ -5,6 +5,7 @@ include: "*.view"
 
 # include all the dashboards
 include: "*.dashboard"
+fiscal_month_offset: -9
 
 explore: events {
   join: users {

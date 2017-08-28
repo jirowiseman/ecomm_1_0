@@ -31,9 +31,28 @@ view: users {
       week,
       month,
       quarter,
-      year
+      year,
+      yesno
     ]
     sql: ${TABLE}.created_at ;;
+  }
+
+  dimension: days_since_created {
+    type: number
+    sql: DATEDIFF(CURDATE(),${created_date}) ;;
+  }
+
+  dimension: created_event {
+   case: {
+    when: {
+      sql:${created}= yes;;
+      label: "Exists"}
+    when: {
+      sql: ${created} = no;;
+      label: "Does not Exist"
+    }
+   }
+
   }
 
   dimension: email {
@@ -46,15 +65,30 @@ view: users {
     sql: ${TABLE}.first_name ;;
   }
 
+  dimension: last_name {
+    type: string
+    sql: ${TABLE}.last_name ;;
+  }
+
+  dimension: full_name {
+    description: "User's first and last name, click to see user facts!"
+    type:  string
+    sql: CONCAT(${first_name},' ',${last_name});;
+    link: {
+      label: "User Info"
+      url: "/explore/ecomm_1_0/orders?fields=users.id,users.name,users.created_date,user_facts.total_number_of_orders,user_facts.latest_order_date&f[users.full_name]={{value}}"
+    }
+    }
+
   dimension: gender {
     type: string
     sql: ${TABLE}.gender ;;
   }
 
-  dimension: last_name {
-    type: string
-    sql: ${TABLE}.last_name ;;
-  }
+#   dimension: user_info {
+#     sql:  ${TABLE}.id;;
+#     html: <a href="/explore/ecomm_1_0/orders?fields=users.name,users.created_date,user_facts.total_number_of_orders,user_facts.latest_order_date&f[users.id]={{value}}"target="_new">Facts</a>;;
+#   }
 
   dimension: state {
     type: string
