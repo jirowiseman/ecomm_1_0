@@ -42,7 +42,7 @@ view: orders {
     sql: ${TABLE}.status ;;
     link: {
       label: "Status Dash"
-      url: "embed/dashboards/6?Status={{value | url_encode}}"
+      url: "/embed/dashboards/6?Status={{value | url_encode}}"
     }
   }
 
@@ -54,10 +54,17 @@ view: orders {
 
   measure: count {
     type: count
+    hidden: yes
+  }
+
+  measure: count_formatted {
+    type: number
+    label: "Count"
+    sql: COALESCE(${count},0) ;;
     drill_fields: [created_date, users.id, order_items.count]
     link: {
       label: "Status Dash Measure"
-      url: "embed/dashboards/6?Status={{orders.created_date._value | url_encode}}"
+      url: "/embed/dashboards/6?Date={{orders.created_date._value | url_encode}}"
     }
   }
 }
