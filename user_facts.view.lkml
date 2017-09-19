@@ -5,6 +5,9 @@ view: user_facts {
         users.id as user_id,
         COUNT(orders.id) as total_number_of_orders,
         SUM(order_items.sale_price) as lifetime_revenue,
+        MAX(order_items.sale_price) as largest_item_purchase,
+        MIN(order_items.sale_price) as smallest_item_purchase,
+        AVG(order_items.sale_price) as avg_item_purchase,
         MIN(DATE(orders.created_at)) as first_order_date,
         MAX(DATE(orders.created_at)) as latest_order_date,
         DATEDIFF(CURDATE(),MAX(DATE(orders.created_at))) as days_since_last_order,
@@ -19,6 +22,7 @@ view: user_facts {
 
   dimension: user_id {
     sql:  ${TABLE}.user_id ;;
+    hidden: yes
   }
 
   dimension: total_number_of_orders {
@@ -46,9 +50,22 @@ view: user_facts {
     sql: ${TABLE}.months_as_customer;;
   }
 
-  measure: avg_orders_per_month {
+  dimension: largest_item_purchase {
+    sql: ${TABLE}.largest_item_purchase ;;
+  }
+
+  dimension: smallest_item_purchase {
+    sql: ${TABLE}.smallest_item_purchase ;;
+  }
+
+  dimension: avg_item_purchase {
+    sql: ${TABLE}.avg_item_purchase ;;
+  }
+
+  dimension: avg_orders_per_month {
     type: number
     sql: ${total_number_of_orders}/${months_as_customer};;
   }
+
 
 }
