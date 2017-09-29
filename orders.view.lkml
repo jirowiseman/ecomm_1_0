@@ -18,6 +18,7 @@ view: orders {
       week,
       month,
       month_num,
+      month_name,
       quarter,
       year,
       fiscal_year,
