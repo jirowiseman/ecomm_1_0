@@ -7,6 +7,8 @@ view: orders {
     sql: ${TABLE}.id ;;
   }
 
+## single file commit
+
   dimension_group: created {
     type: time
     timeframes: [
