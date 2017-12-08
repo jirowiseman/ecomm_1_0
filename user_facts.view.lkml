@@ -16,7 +16,7 @@ view: user_facts {
       LEFT JOIN orders ON users.id = orders.user_id
       LEFT JOIN order_items ON order_items.order_id = orders.id
       GROUP BY users.id;;
-      persist_for: "24 hours"
+#       persist_for: "24 hours"
       indexes: ["user_id"]
   }
 

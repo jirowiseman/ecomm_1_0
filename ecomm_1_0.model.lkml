@@ -7,6 +7,15 @@ include: "*.view"
 include: "*.dashboard"
 fiscal_month_offset: -9
 
+
+datagroup: reset_7_30am_PST {
+  sql_trigger: SELECT FLOOR((UNIX_TIMESTAMP(NOW()) - 60*60*14.5)/(60*60*24));;
+}
+
+persist_with: reset_7_30am_PST
+
+explore: orders {}
+
 explore: events {
   join: users {
     type: left_outer
@@ -49,15 +58,17 @@ explore: order_items {
   }
 }
 
-explore: orders {
+explore: orders_analysis {
+  from: orders
+
   join: users {
     type: left_outer
-    sql_on: ${orders.user_id} = ${users.id} ;;
+    sql_on: ${orders_analysis.user_id}.user_id} = ${users.id} ;;
     relationship: many_to_one
   }
   join: user_facts {
     type:  left_outer
-    sql_on: ${orders.user_id} = ${user_facts.user_id}  ;;
+    sql_on: ${orders_analysis.user_id} = ${user_facts.user_id}  ;;
     relationship: many_to_one
   }
 

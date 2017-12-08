@@ -4,7 +4,7 @@ view: 5_or_more_orders_cohort_facts {
       SELECT *
         FROM ${user_facts.SQL_TABLE_NAME} as user_facts
       WHERE total_number_of_orders >= 5 ;;
-      sql_trigger_value: SELECT COUNT(*) FROM ${user_facts.SQL_TABLE_NAME} WHERE total_number_of_orders >=5 ;;
+#       sql_trigger_value: SELECT COUNT(*) FROM ${user_facts.SQL_TABLE_NAME} WHERE total_number_of_orders >=5 ;;
 #     persist_for: "12 hours"
     indexes: ["user_id"]
   }

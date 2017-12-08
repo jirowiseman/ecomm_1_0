@@ -15,6 +15,8 @@ view: products {
       {%endif%};;
   }
 
+  ##change
+
   dimension: category {
     type: string
     sql: ${TABLE}.category ;;
