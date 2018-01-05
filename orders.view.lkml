@@ -7,6 +7,7 @@ view: orders {
     sql: ${TABLE}.id ;;
   }
 
+
 ## single file commit
 
   dimension_group: created {
@@ -55,19 +56,17 @@ view: orders {
     sql: ${TABLE}.user_id ;;
   }
 
+
   measure: count {
     type: count
-    hidden: yes
+    hidden: no
+
   }
 
-  measure: count_formatted {
-    type: number
-    label: "Count"
-    sql: COALESCE(${count},0) ;;
-    drill_fields: [created_date, users.id, order_items.count]
-    link: {
-      label: "Status Dash Measure"
-      url: "/dashboards/6?Date={{orders.created_date._value | url_encode}}"
-    }
+
+  measure: sum {
+    type: sum
+    sql: ${TABLE}.id ;;
   }
+
 }

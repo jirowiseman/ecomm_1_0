@@ -8,13 +8,12 @@ include: "*.dashboard"
 fiscal_month_offset: -9
 
 
-datagroup: reset_7_30am_PST {
-  sql_trigger: SELECT FLOOR((UNIX_TIMESTAMP(NOW()) - 60*60*14.5)/(60*60*24));;
+explore: orders {
+  access_filter: {
+    field: user_id
+    user_attribute: "number"
+  }
 }
-
-persist_with: reset_7_30am_PST
-
-explore: orders {}
 
 explore: events {
   join: users {
