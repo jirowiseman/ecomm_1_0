@@ -25,6 +25,10 @@ view: user_facts {
     hidden: yes
   }
 
+  parameter: start_date {
+    type: date
+  }
+
   dimension: total_number_of_orders {
     sql: ${TABLE}.total_number_of_orders;;
   }
