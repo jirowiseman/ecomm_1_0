@@ -35,6 +35,7 @@ view: users {
       yesno
     ]
     sql: ${TABLE}.created_at ;;
+    allow_fill: no
   }
 
   dimension: days_since_created {
@@ -96,8 +97,9 @@ view: users {
   }
 
   dimension: zip {
-    type: number
+    type: string
     sql: ${TABLE}.zip ;;
+    map_layer_name: us_zipcode_tabulation_areas
   }
 
   measure: count {

@@ -30,6 +30,11 @@ view: orders {
     sql: ${TABLE}.created_at ;;
   }
 
+  dimension: first_of_month {
+    type: string
+    sql: CAST(CONCAT(${created_month},'-01') AS DATE) ;;
+  }
+
   dimension: date_reformat {
     type: string
     sql: CONCAT(${created_month_num},"-",${created_day_of_month},"-",${created_year}) ;;
@@ -58,7 +63,7 @@ view: orders {
 
 
   measure: count {
-    type: count
+    type: yesno
     hidden: no
 
   }

@@ -13,6 +13,18 @@ explore: orders {
     field: user_id
     user_attribute: "number"
   }
+
+  join: order_items {
+    sql_on: ${order_items.inventory_item_id} = ${order_items.inventory_item_id} ;;
+    relationship: many_to_one
+    fields: []
+    ## testing blank fields param -- results in no fields shown from join -- use case?
+  }
+
+  join: inventory_items {
+    sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;;
+    relationship: many_to_many
+  }
 }
 
 explore: events {
