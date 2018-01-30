@@ -63,8 +63,7 @@ view: orders {
 
 
   measure: count {
-    type: yesno
-    hidden: no
+    type: count
 
   }
 
