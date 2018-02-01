@@ -1,5 +1,9 @@
 connection: "thelook"
 
+datagroup: monthly {
+  sql_trigger: DATE_TRUNC(month,now()) ;;
+}
+
 # include all the views
 include: "*.view"
 
@@ -103,3 +107,5 @@ explore: user_data {
 explore: users {}
 
 explore: users_nn {}
+
+explore: order_fact {}
