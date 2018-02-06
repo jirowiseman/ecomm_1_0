@@ -13,10 +13,10 @@ fiscal_month_offset: -9
 
 
 explore: orders {
-  access_filter: {
-    field: user_id
-    user_attribute: "number"
-  }
+#   access_filter: {
+#     field: user_id
+#     user_attribute: "number"
+#   }
 
   join: order_items {
     sql_on: ${order_items.inventory_item_id} = ${order_items.inventory_item_id} ;;
