@@ -1,4 +1,6 @@
-explore: dynamic_view_orders {}
+explore: dynamic_view_orders {
+  hidden: yes
+}
 
 view: dynamic_view_orders {
   sql_table_name: {% parameter data_model %};;

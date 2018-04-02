@@ -8,15 +8,23 @@ datagroup: monthly {
 include: "*.view"
 
 # include all the dashboards
-include: "*.dashboard"
+include: "product_dash.dashboard"
 fiscal_month_offset: -9
 
 
-explore: orders {
+explore: order {
+  from: orders
+  view_name: orders
 #   access_filter: {
 #     field: user_id
 #     user_attribute: "number"
 #   }
+# always_filter: {
+#   filters: {
+#     field: created_date
+#     value: "in the past 2 years"
+#   }
+# }
 
   join: order_items {
     sql_on: ${order_items.inventory_item_id} = ${order_items.inventory_item_id} ;;
@@ -98,9 +106,12 @@ explore: products {}
 
 explore: user_data {
   join: users {
-    type: left_outer
-    sql_on: ${user_data.user_id} = ${users.id} ;;
+    type: inner
+    sql_on: CASE
+    WHEN ${user_data.user_id} = 910 THEN ${users.id} = ${user_data.user_id}
+    WHEN ${user_data.user_id} = 1912 THEN ${users.id}+2 = ${user_data.user_id} END;;
     relationship: many_to_one
+
   }
 }
 
