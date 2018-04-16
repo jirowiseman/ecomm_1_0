@@ -8,7 +8,7 @@ view: order_fact {
         , order_id as order_id
         , COUNT(*) as lifetime_orders
         , MAX(orders.created_at) as most_recent_purchase_at
---       , row_number() over(partition by user_id,
+--        , row_number() over(partition by user_id,
 --        {% if order_fact.created_at_date._in_query %}
 --        created_at
 --        {% elsif order_fact.created_at_week._in_query %}
