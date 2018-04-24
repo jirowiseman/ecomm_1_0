@@ -17,12 +17,12 @@ explore: order {
   view_name: orders
 #   access_filter: {
 #     field: user_id
-#     user_attribute: "number"
+#     user_attribute: "wildcard"
 #   }
 # always_filter: {
 #   filters: {
-#     field: created_date
-#     value: "in the past 2 years"
+#     field: user_id
+#     value: "{{_user_attributes['wildcard']}}"
 #   }
 # }
 
