@@ -15,6 +15,10 @@ fiscal_month_offset: -9
 explore: order {
   from: orders
   view_name: orders
+  access_filter: {
+    field: orders.user_id
+    user_attribute: account_id
+  }
 #   access_filter: {
 #     field: user_id
 #     user_attribute: "wildcard"
