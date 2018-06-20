@@ -122,10 +122,13 @@ view: orders {
     sql: CONCAT(${created_month_num},"-",${created_day_of_month},"-",${created_year}) ;;
   }
 
+
   measure: max_time {
     type: string
     sql: max(${created_time});;
   }
+
+
 
 
   dimension: status {

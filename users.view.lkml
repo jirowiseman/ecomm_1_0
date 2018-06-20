@@ -7,6 +7,28 @@ view: users {
     sql: ${TABLE}.id ;;
   }
 
+  dimension: id_tiered {
+    type: tier
+    tiers: [1,2,3,4,5,6,7,8,9]
+    sql: id ;;
+  }
+
+  dimension: call_attempts_case {
+    type: string
+    sql:CASE
+    WHEN ${TABLE}.id = 1 THEN "1"
+    WHEN ${TABLE}.id = 2 THEN "2"
+    WHEN ${TABLE}.id = 3 THEN "3"
+    WHEN ${TABLE}.id = 4 THEN "4"
+    WHEN ${TABLE}.id = 5 THEN "5"
+    WHEN ${TABLE}.id = 6 THEN "6"
+    WHEN ${TABLE}.id = 7 THEN "7"
+    WHEN ${TABLE}.id = 8 THEN "8"
+    WHEN ${TABLE}.id = 9 THEN "9"
+
+    ELSE "10+" END;;
+  }
+
   dimension: age {
     type: number
     sql: ${TABLE}.age ;;

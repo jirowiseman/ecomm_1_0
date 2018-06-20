@@ -9,7 +9,7 @@ explore: orders_base {
   view_name: orders
   access_filter: {
     field: orders.user_id
-    user_attribute: account_id
+    user_attribute: wildcard
   }
   #comment
 }
