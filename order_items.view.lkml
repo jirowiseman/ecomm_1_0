@@ -19,6 +19,11 @@ view: order_items {
     sql: ${TABLE}.order_id ;;
   }
 
+  dimension: less_than_100 {
+    type: yesno
+    sql:${order_id}< 100;;
+  }
+
   dimension_group: returned {
     type: time
     timeframes: [

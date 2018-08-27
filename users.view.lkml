@@ -13,6 +13,7 @@ view: users {
     sql: id ;;
   }
 
+
   dimension: call_attempts_case {
     type: string
     sql:CASE
@@ -38,6 +39,7 @@ view: users {
     type: string
     sql: ${TABLE}.city ;;
   }
+
 
   dimension: country {
     type: string
@@ -116,6 +118,7 @@ view: users {
   dimension: state {
     type: string
     sql: ${TABLE}.state ;;
+    map_layer_name: us_states
   }
 
   dimension: zip {

@@ -50,13 +50,14 @@ view: order_fact {
   }
 
 
+
+  dimension: lifetime_orders {
+    description: "The total number of orders for each user"
+    type: number
+    sql: ${TABLE}.lifetime_orders ;;
   }
 
-#   dimension: lifetime_orders {
-#     description: "The total number of orders for each user"
-#     type: number
-#     sql: ${TABLE}.lifetime_orders ;;
-#   }
+  }
 #
 #   dimension_group: most_recent_purchase {
 #     description: "The date when each user last ordered"

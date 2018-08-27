@@ -15,32 +15,30 @@ fiscal_month_offset: -9
 explore: order {
   from: orders
   view_name: orders
-  access_filter: {
-    field: orders.user_id
-    user_attribute: account_id
-  }
 #   access_filter: {
-#     field: user_id
-#     user_attribute: "wildcard"
+#     field: orders.user_id
+#     user_attribute: account_id
 #   }
-# always_filter: {
-#   filters: {
-#     field: user_id
-#     value: "{{_user_attributes['wildcard']}}"
-#   }
-# }
 
-  join: order_items {
-    sql_on: ${order_items.inventory_item_id} = ${order_items.inventory_item_id} ;;
+  join: items {
+  from: order_items
+    sql_on: ${orders.id} = ${items.order_id} ;;
     relationship: many_to_one
-    fields: []
+    # fields: []
     ## testing blank fields param -- results in no fields shown from join -- use case?
   }
 
-  join: inventory_items {
-    sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;;
-    relationship: many_to_many
-  }
+  # join: inventory_items {
+  #   sql_on: ${items.inventory_item_id} = ${inventory_items.id} ;;
+  #   relationship: many_to_many
+  # }
+
+  # join: order_items {
+  #   sql_on: ${orders.id} = ${order_items.order_id} ;;
+  #   relationship: many_to_one
+  #   # fields: []
+  #   ## testing blank fields param -- results in no fields shown from join -- use case?
+  # }
 }
 
 explore: events {
@@ -119,7 +117,32 @@ explore: user_data {
   }
 }
 
-explore: users {}
+explore: orders {
+  fields: [ALL_FIELDS*]
+
+  join: order_items {
+    relationship: one_to_many
+    sql_on: ${order_items.order_id}=${orders.id} ;;
+
+  }
+
+  join: users {
+    type: left_outer
+    sql_on: ${orders.user_id} = ${users.id} ;;
+    relationship: many_to_one
+  }
+
+  join: state_order_facts {
+    type: cross
+  }
+
+  join: total_orders_by_state {
+    view_label: "State Order Facts"
+    sql_on: ${total_orders_by_state.state}=${users.state} ;;
+    type: left_outer
+    relationship: many_to_one
+  }
+}
 
 explore: users_nn {}
 
