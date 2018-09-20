@@ -16,10 +16,10 @@ explore: order {
   from: orders
   view_name: orders
 
-  access_filter: {
-    field: orders.user_id
-    user_attribute: account_id
-  }
+  # access_filter: {
+  #   field: orders.user_id
+  #   user_attribute: number
+  # }
 
 
   join: items {
