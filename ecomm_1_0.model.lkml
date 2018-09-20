@@ -15,10 +15,12 @@ fiscal_month_offset: -9
 explore: order {
   from: orders
   view_name: orders
-  # access_filter: {
-  #   field: orders.id
-  #   user_attribute: user_id
-  # }
+
+  access_filter: {
+    field: orders.user_id
+#     user_attribute: account_id
+  }
+
 
   join: items {
   from: order_items
