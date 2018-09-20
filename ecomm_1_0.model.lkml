@@ -15,10 +15,10 @@ fiscal_month_offset: -9
 explore: order {
   from: orders
   view_name: orders
-#   access_filter: {
-#     field: orders.user_id
-#     user_attribute: account_id
-#   }
+  # access_filter: {
+  #   field: orders.id
+  #   user_attribute: user_id
+  # }
 
   join: items {
   from: order_items
@@ -48,6 +48,9 @@ explore: events {
     relationship: many_to_one
   }
 }
+
+##new something
+#feom onewofnoewew
 
 explore: inventory_items {
   join: products {
