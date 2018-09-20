@@ -18,7 +18,7 @@ explore: order {
 
   access_filter: {
     field: orders.user_id
-#     user_attribute: account_id
+    user_attribute: account_id
   }
 
 
