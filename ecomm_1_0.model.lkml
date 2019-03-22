@@ -8,7 +8,7 @@ datagroup: monthly {
 include: "*.view"
 
 # include all the dashboards
-include: "product_dash.dashboard"
+# include: "product_dash.dashboard"
 fiscal_month_offset: -9
 
 
@@ -109,11 +109,11 @@ explore: orders_analysis {
     relationship: many_to_one
   }
 
-  join: 5_or_more_orders_cohort_facts {
-    type: left_outer
-    sql_on: ${5_or_more_orders_cohort_facts.user_id} = ${user_facts.user_id} ;;
-    relationship: one_to_one
-  }
+  # join: 5_or_more_orders_cohort_facts {
+  #   type: left_outer
+  #   sql_on: ${5_or_more_orders_cohort_facts.user_id} = ${user_facts.user_id} ;;
+  #   relationship: one_to_one
+  # }
 }
 
 explore: products {}
@@ -145,6 +145,7 @@ explore: orders {
   }
 
   join: state_order_facts {
+    relationship: many_to_one
     type: cross
   }
 
