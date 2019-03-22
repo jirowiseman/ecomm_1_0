@@ -16,6 +16,13 @@ explore: order {
   from: orders
   view_name: orders
 
+  always_filter: {
+    filters: {
+      field: orders.status
+      value: "pending, complete"
+    }
+  }
+
   # access_filter: {
   #   field: orders.user_id
   #   user_attribute: number

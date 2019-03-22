@@ -190,10 +190,26 @@ view: orders {
     hidden:  no
     type: string
     sql: ${TABLE}.status ;;
-#     html: {% if order_items.less_than_100._value == 'No' %}
-#     <p style="color: black; background-color: red; font-size:100%; text-align:center">{{ rendered_value }}</p>
-#     {% endif %};;
+    html:
+    <p style="font-size:250%; text-align:center">{{ rendered_value }}</p>
+    ;;
+    # case: {
+    #   when: {
+    #     label: "complete"
+    #     sql: ${TABLE}.status = "complete";;}
+
+    #     when: {
+    #     label: "cancelled"
+    #     sql: ${TABLE}.status = "cancelled";;}
+
+    #     when: {
+    #     label: "pending"
+    #     sql: ${TABLE}.status = "pending";;}
+
+    #     else: "none"
+
     }
+
 
 
 
@@ -228,6 +244,9 @@ view: orders {
   measure: count {
     type: count
     drill_fields: [id, created_date]
+    # value_format: "0.000, \"K\""
+    html:
+    <p style="font-size:250%; text-align:center">{{ rendered_value }}</p>;;
 #     html: {% if value < 15 %}
 #       <p style="color: black; background-color: tomato; border-radius: 100px; font-size:120%; text-align:center">{{ rendered_value }}</p>
 #     {% else %}
